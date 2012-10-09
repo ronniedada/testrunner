@@ -1348,24 +1348,29 @@ def key_to_email(key_num, key_str):
 
 
 def key_to_city(key_num, key_str):
-    return key_str[-12:-9]
+    return "city"
+#    return key_str[-12:-9]
 
 
 def key_to_country(key_num, key_str):
-    return key_str[-9:-7]
+    return "china"
+#    return key_str[-9:-7]
 
 
 def key_to_realm(key_num, key_str):
-    return key_str[-7:-5]
+    return "CA"
+#    return key_str[-7:-5]
 
 
 def key_to_coins(key_num, key_str):
-    sub_key = key_str[-16:]
-    return max(0.0, int(sub_key[0:4], 16) / 100.0)
+    return int(key_str)
+#    sub_key = key_str[-16:]
+#    return max(0.0, int(sub_key[0:4], 16) / 100.0)
 
 
 def key_to_category(key_num, key_str):
-    return int(key_str[-12], 16) % 3
+    return int(key_str)
+#    return int(key_str[-12], 16) % 3
 
 
 def key_to_achievements(key_num, key_str):
