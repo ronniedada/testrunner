@@ -594,6 +594,7 @@ def next_cmd(cfg, cur, store):
                                     choose_entry(cfg.get('min-value-size', MIN_VALUE_SIZE),
                                                  num_ops))
 
+        print "do_set_create: %s, do_delete: %s: %s" % (do_set_create, do_delete, key_str)
         return (cmd, key_num, key_str, itm_val, expiration)
     else:
         cmd = 'get'
@@ -625,6 +626,8 @@ def next_cmd(cfg, cur, store):
                                          cfg.get('random', 0),
                                          cur)
             key_str = prepare_key(key_num, cfg.get('prefix', ''))
+
+            print "get: %s" % key_str
 
             return (cmd, key_num, key_str, itm_val, 0)
         else:
@@ -691,10 +694,11 @@ def positive(x):
 
 
 def prepare_key(key_num, prefix=None):
-    key_hash = md5(str(key_num)).hexdigest()[0:16]
-    if prefix and len(prefix) > 0:
-        return prefix + "-" + key_hash
-    return key_hash
+#    key_hash = md5(str(key_num)).hexdigest()[0:16]
+#    if prefix and len(prefix) > 0:
+#        return prefix + "-" + key_hash
+#    return key_hash
+    return str(key_num)
 
 
 def choose_entry(arr, n):
