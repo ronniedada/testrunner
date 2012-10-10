@@ -333,6 +333,18 @@ class EPerfMaster(perf.PerfBase):
                   "at %d UTC, curr_time is %s" \
                    % (server.ip, min_left, tm_hour, gmt_now)
 
+    def rebuild_alog(self):
+        """Rebuild access log"""
+        freq = 1
+        self.set_nru_freq(freq)
+        print "frequency has been set to %s minute" % freq
+
+        # wait for 2 minutes
+        time.sleep(120)
+
+        # set back to 24 hrs
+        self.set_nru_freq(1440)
+
     def set_reb_cons_view(self, node, disable=True):
         """Set up consistent view for rebalance task"""
         rest = RestConnection(node)
@@ -435,6 +447,7 @@ class EPerfMaster(perf.PerfBase):
 
         if self.parami("hot_load_phase", 0) == 1:
             num_items = self.parami("hot_init_items", PerfDefaults.items)
+            self.rebuild_alog()
         else:
             num_items = self.parami("items", PerfDefaults.items)
 
