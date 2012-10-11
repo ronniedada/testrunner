@@ -339,8 +339,8 @@ class EPerfMaster(perf.PerfBase):
         self.set_nru_freq(freq)
         print "frequency has been set to %s minute" % freq
 
-        # wait for 2 minutes
-        time.sleep(120)
+        # wait for 5 minutes
+        time.sleep(300)
 
         # set back to 24 hrs
         self.set_nru_freq(1440)
