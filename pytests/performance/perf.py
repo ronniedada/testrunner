@@ -658,10 +658,11 @@ class PerfBase(unittest.TestCase):
         phase = "load"
         if self.parami("hot_load_phase", 0) == 1:
             # all gets
-            cfg['ratio-sets'] = 0
-            cfg['exit-after-creates'] = 0
-            cfg['exit-after-gets'] = 1
-            cfg['max-gets'] = start_at + num_items
+            if self.parami("hot_load_get", 1) == 1:
+                cfg['ratio-sets'] = 0
+                cfg['exit-after-creates'] = 0
+                cfg['exit-after-gets'] = 1
+                cfg['max-gets'] = start_at + num_items
             phase = "reload"
 
         if is_eperf:
